@@ -1,7 +1,7 @@
 public without sharing class RegistrationClass {
     public class MyException extends Exception{
     }
-
+    //checking git push--dosent apply anwhere in this code
     @AuraEnabled
     public static void  registerUser(String firstName, String lastName, String email, String username, String password, String phone,string education,string experience,string panCard,List<Map<String, Object>> attachments){ 
         
