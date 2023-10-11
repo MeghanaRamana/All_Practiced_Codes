@@ -1,0 +1,7 @@
+<template>
+    <lightning-card title="Position History" icon-name="utility:chart">
+        <template if:true={chartConfiguration}>
+            <c-childbarchart chart-config={chartConfiguration}></c-childbarchart>
+        </template>
+    </lightning-card>
+</template>

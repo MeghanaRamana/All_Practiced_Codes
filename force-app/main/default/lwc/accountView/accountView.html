@@ -1,0 +1,50 @@
+<template>
+    <div class="slds-grid slds-wrap navbarsection">
+        <div class="slds-col slds-size_12-of-12 center">
+            <h1>EMS Portal</h1>
+        </div>
+    </div>
+
+    <div class="headersection">
+        <h2>Header Section {recordId}</h2>
+    </div>
+
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12 emssection">
+            <div class="slds-box space">
+                <!-- Registration Form Component -->
+                <c-registration-form></c-registration-form>
+            </div>
+        </div>
+
+        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12 emssection">
+            <div class="slds-box space">
+                <!-- Lightning Datatable Component -->
+                <lightning-datatable 
+                    key-field="id" hide-checkbox-column="true"
+                    data={accounts} 
+                    columns={columns}
+                >
+                </lightning-datatable>
+            </div>
+        </div>
+
+        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12 emssection">
+            <div class="slds-box space">
+                <!-- Vertical Navigation Component -->
+                <div>
+                    <lightning-vertical-navigation selected-item="recent" compact>
+                        <button onclick={navigateToVFPage}>Navigate to Account Record</button>
+                        <lightning-vertical-navigation-section label="">
+                            <lightning-vertical-navigation-item label="Account" name="Account" onclick={handleNavigateToRecord}></lightning-vertical-navigation-item>
+                            <lightning-vertical-navigation-item label="Contact" name="Contact"></lightning-vertical-navigation-item>
+                            <lightning-vertical-navigation-item label="Employee" name="Employee"></lightning-vertical-navigation-item>
+                            <lightning-vertical-navigation-item label="Learning" name="Learning"></lightning-vertical-navigation-item>
+                            <lightning-vertical-navigation-item label="Award" name="Award"></lightning-vertical-navigation-item>
+                        </lightning-vertical-navigation-section>
+                    </lightning-vertical-navigation>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,220 @@
+<template>
+
+	<div class="container">
+		<div style="position:absolute;top:100px;text-align:center;margin-left:-55%;">
+			<c-custom-toast-messages timeout={timeout} sticky={sticky}></c-custom-toast-messages>
+		</div>
+
+		<!-- <place a button on the top right corner> -->
+		<lightning-button class="myButton" label="LOGIN" variant="brand" onclick={handleLogin} style="margin:10px;">
+		</lightning-button>
+	</div>
+	<!-- <on click of login displaying form in a pop up i.e popup overlay and popup container> -->
+	<div class="popup-overlay" if:true={isPopupOpen} style="z-index:999999999999999999999999999999;">
+		<div class="popup-container">
+			<div class="popup-header">
+				<lightning-button-icon icon-name="utility:close" variant="bare" alternative-text="Close"
+					onclick={handleClose}></lightning-button-icon>
+			</div>
+			<!-- login form     -->
+			<template if:true={showLoginPage}>
+
+				<lightning-card title="Login" style="margin-top:0px;">
+					<div class="slds-m-around_medium">
+						<lightning-input label="Email" value={email} onchange={handleLoginEmailChange} required>
+						</lightning-input>
+						<br/>
+						<lightning-button variant="brand" label="Cancel" onclick={handleCancel} style="float:left">
+						</lightning-button>
+						<lightning-button variant="brand" label="Login" onclick={handleLogin2} style="float:right">
+						</lightning-button>
+					</div>
+					<br/><br/>
+					<p style="text-align:right; margin-right:10px;">
+						Don't have an account?</br>
+						<a href="#" onclick={showRegistrationForm}>Register</a>
+					</p>
+					<div class="slds-m-top_medium">
+						<p class="slds-text-color_error">{errorMessage}</p>
+					</div>
+				</lightning-card>
+
+			</template>
+			<!-- registration form -->
+			<template if:true={showRegistrationPage}>
+				<lightning-card title="Registration Form" style="margin-top:0px;">
+
+					<!-- registration form is displayed in different cards and to display each card if true condition is used -->
+					<!-- card-1 -->
+					<template if:true={showPersonalDetails}>
+						<!-- progress indicator on the top of the form  -->
+						<lightning-progress-indicator current-step="Personal Details" type="base" variant="base">
+							<lightning-progress-step label="Personal Details" value="1"></lightning-progress-step>
+							<lightning-progress-step label="Education Details" value="2"></lightning-progress-step>
+							<lightning-progress-step label="Experience Details" value="3"></lightning-progress-step>
+							<lightning-progress-step label="Kyc Details" value="4"></lightning-progress-step>
+						</lightning-progress-indicator>
+						<lightning-card title="Personal Details" style="margin-top:0px;">
+							<div class="slds-card__body registration-scroll-container">
+								<div class="slds-m-around_medium ">
+									<lightning-input label="First Name" value={firstName}
+										onchange={handleFirstNameChange} required>
+									</lightning-input>
+									<lightning-input label="Last Name" value={lastName} onchange={handleLastNameChange}
+										required>
+									</lightning-input>
+									<lightning-input label="Email" value={email}
+										onchange={handleRegistrationEmailChange} required>
+									</lightning-input>
+									<lightning-input label="phone" value={phone}
+										onchange={handleRegistrationPhoneChange} required>
+									</lightning-input>
+									<lightning-input label="City" value={city} onchange={handleCityChange} required>
+									</lightning-input>
+									<lightning-input label="Street" value={street} onchange={handleStreetChange}
+										required></lightning-input>
+									<lightning-input label="Country" value={country} onchange={handleCountryChange}
+										required></lightning-input>
+									<lightning-input label="Postal Code" value={postalCode}
+										onchange={handlePostalCodeChange} required></lightning-input>
+
+									</br>
+									<div class="slds-grid slds-gutters">
+										<div class="slds-col">
+											<div class="slds-align_absolute-center">
+												<button class="slds-button slds-button_brand" onclick={handleCancel}>Cancel</button>
+											</div>
+										</div>
+										<div class="slds-col">
+											<div class="slds-align_absolute-center">
+												<button class="slds-button slds-button_brand" onclick={handleNext}>Next</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</lightning-card>
+					</template>
+					<!-- card-2 -->
+					<template if:true={showEducationDetails}>
+						<lightning-progress-indicator current-step="Education Details" type="base"
+							class="slds-m-bottom_medium">
+							<lightning-progress-step label="Personal Details" value="Personal Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Education Details" value="Education Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Experience Details" value="Experience Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Kyc Details" value="Kyc Details"></lightning-progress-step>
+						</lightning-progress-indicator>
+						<lightning-card title="Education Details" style="margin-top:0px;">
+							<div class="slds-m-around_medium">
+								<lightning-input label="Your Highest Degree" value={highestDegree}
+									onchange={handleHighestDegreeChange} required>
+								</lightning-input>
+								<lightning-input label="Board of qualification" value={qualification}
+									onchange={handleQualificationChange} required>
+								</lightning-input>
+								<lightning-input label="CGPA/Percentage" value={cgpa} onchange={handleCGPAChange}
+									required>
+								</lightning-input>
+								<br/>
+								<div class="slds-grid slds-gutters">
+									<div class="slds-col">
+										<div class="slds-align_absolute-center">
+											<button class="slds-button slds-button_brand" onclick={handlePrevious} >Previous</button>
+										</div>
+									</div>
+									<div class="slds-col">
+										<div class="slds-align_absolute-center">
+											<button class="slds-button slds-button_brand" onclick={handleNext}>Next</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</lightning-card>
+					</template>
+					<!-- card-3 -->
+					<template if:true={showExperienceDetails}>
+						<lightning-progress-indicator current-step="Experience Details" type="base"
+							class="slds-m-bottom_medium">
+							<lightning-progress-step label="Personal Details" value="Personal Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Education Details" value="Education Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Experience Details" value="Experience Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Kyc Details" value="Kyc Details"></lightning-progress-step>
+						</lightning-progress-indicator>
+						<lightning-card title="Experience Details" style="margin-top:0px;">
+
+							<div class="slds-m-around_medium">
+								<lightning-input label="Years Of Experience" value={experience}
+									onchange={handleExperienceChange}>
+								</lightning-input>
+								<lightning-input label="Previous Company" value={previousCompany}
+									onchange={handleCompanyChange}>
+								</lightning-input>
+								<lightning-input label="Role" value={role} onchange={handleRoleChange}>
+								</lightning-input>
+								<br />
+								<div class="slds-grid slds-gutters">
+									<div class="slds-col">
+										<div class="slds-align_absolute-center">
+											<button class="slds-button slds-button_brand" onclick={handlePrevious} >Previous</button>
+										</div>
+									</div>
+									<div class="slds-col">
+										<div class="slds-align_absolute-center">
+											<button class="slds-button slds-button_brand" onclick={handleNext}>Next</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</lightning-card>
+					</template>
+					<!-- card-4 -->
+					<template if:true={showKycDetails}>
+						<lightning-progress-indicator current-step="Kyc Details" type="base"
+							class="slds-m-bottom_medium">
+							<lightning-progress-step label="Personal Details" value="Personal Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Education Details" value="Education Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Experience Details" value="Experience Details">
+							</lightning-progress-step>
+							<lightning-progress-step label="Kyc Details" value="Kyc Details"></lightning-progress-step>
+						</lightning-progress-indicator>
+						<lightning-card title="Kyc Details" style="margin-top:0px;">
+							<div class="slds-m-around_medium">
+								<lightning-input label="PAN Number" value={panNumber} onchange={handlePanChange}
+									required>
+								</lightning-input>
+								<lightning-input label="Upload You PAN Card" value={panCard}
+									onchange={handleUploadPanChange} required>
+								</lightning-input>
+								<lightning-input label="Upload Your Resume" value={resume}
+									onchange={handleUploadResumeChange} required>
+								</lightning-input>
+								<br/>
+								<div class="slds-grid slds-gutters">
+									<div class="slds-col">
+										<div class="slds-align_absolute-center">
+											<button class="slds-button slds-button_brand" onclick={handlePrevious} >Previous</button>
+										</div>
+									</div>
+									<div class="slds-col">
+										<div class="slds-align_absolute-center">
+											<button class="slds-button slds-button_brand" onclick={handleRegistration}>Register</button>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</lightning-card>
+					</template>
+				</lightning-card>
+			</template>
+		</div>
+	</div>
+</template>

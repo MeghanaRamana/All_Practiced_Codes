@@ -1,0 +1,12 @@
+<template>
+
+      <div style="background:#f3f3f3;font-weight:bold;text-align:center;padding:10px;border-radius:4px;">Holiday Calender
+         <div style="border-top:1px solid #c5c5c5;" class="container"></div>
+       <lightning-datatable
+          data={events}
+          columns={columns}
+          key-field="id"
+          hide-checkbox-column="true"
+       ></lightning-datatable>
+      </div>
+ </template>

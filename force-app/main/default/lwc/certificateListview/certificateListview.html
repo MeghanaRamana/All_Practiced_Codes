@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Certificate List">
+        <div slot="actions">
+            <lightning-button label="New" onclick={navigationTonewrecordPage}>New</lightning-button>
+            <lightning-button label="Delete" onclick={deleteSelectedCertificate}>Delete</lightning-button>
+        </div>
+        <div class="slds-card__body_inner">
+            <p>Selected Certificate: {selectedCertificateLen}</p>
+            
+            <div class="slds-grid slds-gutters slds-p-bottom_x-small slds-p-left_medium">
+                <lightning-input type="search" onchange={handleSearch}></lightning-input>
+            </div>
+        
+
+        
+            <lightning-datatable
+                key-field="id"
+                data={certificates}
+                columns={cols}
+                onrowselection={handleRowSelection}
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        
+       
+    </div>
+    </lightning-card>
+</template>

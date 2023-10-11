@@ -1,0 +1,70 @@
+<template>
+	<lightning-card>
+		
+		<lightning-layout style="margin-top:-24px;padding-top:0;">
+			<lightning-layout-item class="llitem">
+				<lightning-vertical-navigation selected-item={selectedItem} onselect={changeHandleAction}
+					class="navigation">
+					<lightning-vertical-navigation-section class="sidebarnav">
+						<lightning-vertical-navigation-item label="Cittacore" name="cittacore">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Job Openings" name="jobopenings">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Job Applications" name="jobapplications">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Interview Schedule" name="interviewschedule">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Dashboard" name="dashboard">
+						</lightning-vertical-navigation-item>
+						<!-- <lightning-vertical-navigation-item label="Salesforce LWC" name="salesforceLwc"></lightning-vertical-navigation-item> -->
+					</lightning-vertical-navigation-section>
+				</lightning-vertical-navigation>
+			</lightning-layout-item>
+			<div class="slds-p-around_medium"> 
+			<lightning-layout-item>
+				<h2 class="slds-section-title--divider" style="background:#eee; margin-bottom:10px;">
+					<strong>You Are Viewing: <span style="color:#0000ff;">{currentContent}</span></strong></h2>
+				<template if:true={cittacoreValue}>
+					<div class="tabContent1">
+                      <c-flow-carousel></c-flow-carousel>
+					</div>
+				</template>
+
+				<template if:true={jobopeningsValue}>
+					<div class="tabContent1">
+						<c-internal-job-openings></c-internal-job-openings>
+					</div>
+				</template>
+
+				<template if:true={jobapplicationsValue}>
+					<div class="tabContent1">
+                       <!-- <c-cems-test></c-cems-test> -->
+					</div>
+				</template>
+
+				<template if:true={interviewscheduleValue}>
+					<div class="tabContent1">
+						<c-cems-scheduler></c-cems-scheduler>
+					</div>
+				</template>
+
+				<template if:true={dashboardValue}>
+					<div class="tabContent1">
+
+					</div>
+				</template>
+
+				<template if:true={salesforceLwcValue}>
+					<div class="tabContent1">
+
+					</div>
+				</template>
+
+			</lightning-layout-item>
+			</div>
+		</lightning-layout>
+		<!--End RelatedTopics Section-->
+
+		<!-- </div> -->
+	</lightning-card>
+</template>

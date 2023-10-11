@@ -1,0 +1,224 @@
+<template>
+<header>
+<!-- <div class = "brand">
+<a href="">CittaCore</a>
+</div> -->
+<div class="logo">
+<img src="https://cittacoretechnologiesinc3--teamadev8.sandbox.file.force.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Png&versionId=068DT000001pEix&operationContext=DELIVERY&contentId=05TDT000005bbD1&page=0&d=/a/DT000000CwW7/KSvbeNxPG2FJnLSwZstAn.Kd1HTe6Ev7EGCwEzLO1eo&oid=00DDT000000BzxN&dpt=null&viewId=" alt="" width="130"/>
+</div>
+<nav>
+	<ul>
+		<!-- <li><a href="/home">Home</a></li>
+		<li><a href="/updates">Updates</a></li>
+		<li><a href="/contact">Contact</a></li>
+		<li class="signup"><a href="/login">Login</a></li>
+		<li class="login"><a href="/signup">SignUp</a></li>  -->
+		<li>
+				<template if:true={showLogoutButton}>
+					<p class="loginUsername">{loginemail}</p>
+					<a icon-name="utility:logout" onclick={handleNewLogout} class="logoutButton">Logout
+					</a>
+			        
+		         </template>
+		</li>
+		
+	</ul>
+	
+</nav>
+<div class="hamberger-menu" onclick={toggleMobileMenu}>
+	<div class="bar1"></div>
+	<div class="bar2"></div>
+	<div class="bar3"></div>
+	<ul class="mobile-menu">
+		<!-- <li><a href="/home">Home</a></li>
+		<li><a href="/updates">Updates</a></li>
+		<li><a href="/contact">Contact</a></li>
+		<li class="signup"><a href="/login">Login</a></li>
+		<li class="login"><a href="/signup">SignUp</a></li> -->
+		<li>
+			<template if:true={showLogoutButton}>
+					<p class="loginUsername">{loginemail}</p>
+					<a icon-name="utility:logout" onclick={handleNewLogout} class="logoutButton">Logout
+					</a>
+		         </template>
+		</li>
+		
+	</ul>
+</div>
+</header>
+
+<div class="slds-grid slds-wrap" style="margin-top:82px;">
+<div class="slds-col slds-wrap slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12 emssection">
+	<div class="slds-box space">
+		<!-- Registration Form Component -->
+		<template if:true={showRegistrationPage}>
+			<lightning-card title="Create Your Community Account">
+				<lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}
+					active-section-name="A">
+					<div class="slds-p-around_medium form">
+						<lightning-accordion-section name="A" label="Personal Details">
+							<lightning-input label="First Name" value={firstName}
+								onchange={handleFirstNameChange} required></lightning-input>
+							<lightning-input label="Last Name" value={lastName} onchange={handleLastNameChange}
+								required></lightning-input>
+							<lightning-input label="Email" value={email} onchange={handleEmailChange} required>
+							</lightning-input>
+							<lightning-input label="Phone" value={phone} onchange={HandlePhoneChange}>
+							</lightning-input>
+							<lightning-input label="Username" value={username} onchange={handleUsernameChange}
+								required></lightning-input>
+						</lightning-accordion-section>
+						<lightning-accordion-section name="B" label="Security">
+							<lightning-input type="password" label="Password" value={password}
+								onchange={handlePasswordChange} required></lightning-input>
+							<lightning-input type="password" label="Confirm Password" value={confirmPassword}
+								onchange={handleConfirmPasswordChange} required></lightning-input>
+							<lightning-input label="Security Question 1: What is your nickname?"
+								value={securityQuestion1} onchange={handleSecurityQuestion1Change}>
+							</lightning-input>
+							<lightning-input label="Security Question 2: In which city were you born?"
+								value={securityQuestion2} onchange={handleSecurityQuestion2Change}>
+							</lightning-input>
+						</lightning-accordion-section>
+
+						<div class="slds-m-top_medium">
+							<lightning-button label="Register" variant="brand" onclick={handleRegistration}>
+							</lightning-button>
+						</div>
+						<div class="slds-text-align_right" style="margin-top:-30px">
+							<lightning-button label="cancel" variant="brand" onclick={handleCancel}>
+							</lightning-button>
+						</div>
+					</div>
+				</lightning-accordion>
+			</lightning-card>
+		</template>
+		<!--Login form component-->
+		<template if:true={showLoginPage}>
+
+			<lightning-card title="Login" style="margin-top:0px;">
+				<div class="slds-m-around_medium">
+					<lightning-input label="Email" value={email} onchange={handleLoginEmailChange} required>
+					</lightning-input>
+					<lightning-input label="Password" type="password" value={password}
+						onchange={handleLoginPasswordChange} required></lightning-input>
+					<div class="slds-m-top_medium">
+						<lightning-button variant="brand" label="Login" onclick={handleLogin2}>
+						</lightning-button>
+					</div>
+					<!--div class="slds-text-align_right" style="margin-top:-30px">
+						<lightning-button label="New Registration" variant="brand" onclick={handleNewRegistration}></lightning-button>
+					</div-->
+					<br/><br/>
+
+					<div class="slds-text-align_left" style="margin-top:-30px">
+<lightning-input type="checkbox" label="Remember Me" checked={rememberMe} onchange={handleRememberMeChange}></lightning-input>
+                           </div>
+					<p style="text-align:right;">
+						Don't have an account?</br>
+						<a href="#" onclick={showRegistrationForm}>Register</a>
+					</p>
+					<div class="slds-m-top_medium">
+						<p class="slds-text-color_error">{errorMessage}</p>
+					</div>
+				</div>
+			</lightning-card>
+
+		</template>
+		<template if:false={showLoginPage}>
+			<template if:false={showRegistrationPage}>
+
+				<!--c-certificate-multipicklist></c-certificate-multipicklist> 
+				<c-certificate-listview></c-certificate-listview-->
+				<!-- <c-certificate-listview></c-certificate-listview>-->
+				<!-- <c-appointee-docs-upload loginemail={loginemail}></c-appointee-docs-upload> -->
+				<c-appointee-docs-upload loginemail={loginemail} if:true={uploadDocs}></c-appointee-docs-upload>
+				<br/>
+				<!-- <c-recordform></c-recordform> -->
+			</template>
+		</template>
+	</div>
+</div>
+
+<div class="slds-col slds-wrap slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12 emssection">
+	<div class="slds-box space">
+		<template if:true={subscribeCertificate}>
+			<!-- <c-publish-certificate></c-publish-certificate> -->
+			<!--<c-file-uploader></c-file-uploader>-->
+			<c-job-opening></c-job-opening>
+		</template>
+		<template if:false={subscribeCertificate}>
+			<div class="slds-card" style="padding:10px;">
+				<p>
+					CittaCore Technologies is a Core business consulting and professional services firm. We
+					focus on
+					helping customers in creating end-to-end sales and marketing solutions using the Salesforce
+					Cloud platform. Our team is highly experienced, trained, motivated, and driven towards
+					achieving
+					your business goals. We specialize in a wide range of Salesforce platform capabilities
+					including
+					App Development, Process Automation, On-Demand Workflow, Integrations, and Custom
+					Installation.
+					We strive to be one of the best Salesforce development teams in the world and be your
+					trusted
+					partner of choice for delivering IT solutions.
+
+					As our name reflects we ensure our team has strong foundational skills and aim to offer the
+					best
+					of services to our clients and partners.
+
+
+				</p>
+				<br/>
+				<p>
+					For more information visit -  <a href="https://www.cittacore.com" target="_blank">CittaCore Technologies</a>
+				</p>
+				<p> Contact Us : 
+					<a href="info@cittacore.com" target="_blank"> info@cittacore.com</a>
+						
+				</p>
+			</div>
+		</template>
+	</div>
+</div>
+
+<div class="slds-col slds-wrap slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12 emssection">
+	<div class="slds-box space">
+		<!-- Vertical Navigation Component -->
+		<template if:true={navigationComponent}>
+			<div class="slds-card" style="padding:10px;">
+				<lightning-vertical-navigation selected-item="recent" compact>
+					<button onclick={navigateToVFPage}>Navigate to Account Record</button>
+					<lightning-vertical-navigation-section label="">
+						<lightning-vertical-navigation-item label="Account" name="Account"
+							onclick={handleNavigateToRecord}></lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Contact" name="Contact">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Employee" name="Employee">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Learning" name="Learning">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Award" name="Award">
+						</lightning-vertical-navigation-item>
+					</lightning-vertical-navigation-section>
+				</lightning-vertical-navigation>
+			</div>
+		</template>
+
+		<template if:true={subscribeCertificate}>
+			<!-- <c-subscribe-certificate></c-subscribe-certificate> -->
+			<c-sub-job-opening></c-sub-job-opening>
+		</template>
+		
+	</div>
+</div>
+
+<div class="slds-col slds-wrap slds-size_12-of-12 emssection">
+	<div class="slds-box space">
+		<template if:true={showCertificate}>
+			<!--c-certificate-listview></c-certificate-listview-->
+		</template>
+	</div>
+</div>
+</div>
+</template>

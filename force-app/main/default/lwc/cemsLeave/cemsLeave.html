@@ -1,0 +1,20 @@
+<template>
+    <lightning-card>
+      <h1 class="slds-text-heading_small slds-text-align_center">Apply Leave</h1>
+      <div class="cardMargin">
+      <lightning-record-edit-form object-api-name="CEMS_Leave__c" onsubmit={handleSubmit}>
+        <lightning-messages></lightning-messages>
+        
+            <lightning-input-field field-name="CEMS_Employee__c" disabled=true read-only=true value={recordId} required></lightning-input-field>
+            <lightning-input-field field-name="CEMS_Leave_Start_Date__c"></lightning-input-field>
+            <lightning-input-field field-name="CEMS_Leave_End_Date__c"></lightning-input-field>
+            <lightning-input-field field-name="CEMS_Reason__c"></lightning-input-field>
+            <lightning-input-field field-name="CEMS_Type_Of_Leave__c"></lightning-input-field>
+
+            <lightning-button class="slds-align_absolute-center"  type="submit" name="save" label="Save">
+            </lightning-button>
+          
+      </lightning-record-edit-form>
+      </div>
+    </lightning-card>
+    </template>

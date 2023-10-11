@@ -1,0 +1,63 @@
+/* css */
+  /* Add a gradient background to the entire component */
+/* Add a gradient background to the entire component */
+.slds-card {
+  border: 1px solid #d8dde6;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  }
+  /* Style the search input */
+.slds-input.search-input {
+  border-radius: 10px;
+  padding: 0 12px;
+  box-shadow: none;
+  background-color: #f4f6f9;
+  width: 200px;
+}
+
+/* Style the search icon */
+.slds-icon.search-icon {
+  color: #a3acb8;
+}
+  
+  .slds-card__header {
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #d8dde6;
+  padding: 0.75rem 1rem;
+  }
+  
+  .slds-card__body {
+  padding: 1rem;
+  }
+  
+  .datatable-container {
+  height: 300px;
+  overflow: auto;
+  }
+  
+  .slds-checkbox {
+  margin-right: 0.5rem;
+  }
+  
+  .slds-card_boundary {
+  border: 1px solid #d8dde6;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  }
+  
+  .slds-card__header-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  }
+  
+  .slds-text-heading_small {
+  font-size: 0.875rem;
+  }
+  
+  .slds-text-color_error {
+  color: #dc3545;
+  }
+  
+  .lightning-input-container {
+  margin-bottom: 0.5rem;
+  }

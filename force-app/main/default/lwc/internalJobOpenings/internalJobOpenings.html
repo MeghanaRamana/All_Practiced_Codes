@@ -1,0 +1,72 @@
+<template>
+
+    <div class="slds-card" style="padding:10px;font-size:16px;">Job Openings</div>
+    <div>
+        <lightning-input type="search" label="Search" onchange={handleSearch}></lightning-input>
+    </div>
+    <div class="slds-form slds-form_inline slds-p-top_medium" style="margin-left:26px;">
+        <!-- <c-technology-filtered-job data-id ="technology" onfilterchange={handleFilterChange} onfilterexp ={handleExpChange}></c-technology-filtered-job>  -->
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <lightning-combobox data-id="technology" name="technology" label="Select Technology"
+                    value={selectedTechnology} options={technologyOptions}
+                    onchange={handleTechnologyChange}></lightning-combobox>
+            </div>
+        </div>
+
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <lightning-combobox data-id="experience" name="experience" label="Select Experience"
+                    value={selectedExperience} options={experienceOptions}
+                    onchange={handleExperienceChange}></lightning-combobox>
+            </div>
+        </div>
+
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <lightning-button variant="brand-outline" label="ResetFilter" title="titleName"
+                    onclick={handleResetFilter}></lightning-button>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap" style="margin-left:10px;">
+        <template for:each={filteredJobOpenings} for:item="JobOpening">
+            <div key={JobOpening.Id} class="slds-card jobOpeningStyles">
+                <p class="positionStyle" data-value={JobOpening.Id} onclick={openJobOpeningPopup}>{JobOpening.Name}</p>
+                <p class="locationStyle">Location - {JobOpening.CEMS_Job_Location__c}</p>
+                <p class="technologyStyle">Technology - {JobOpening.CEMS_Technology__c}</p>
+                <p class="experienceStyle">Experience - {JobOpening.CEMS_Experience__c}</p>
+                <p class="Duedate">DueDate - {JobOpening.CEMS_Due_Date__c}</p>
+            </div>
+        </template>
+    </div>   
+        <!-- Pop-up Form -->
+    <template if:true={isJobOpeningPopupOpen}>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        <div class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container" style="z-index:99999999999999999;margin-top:40px;">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Job Opening Details</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <template if:true={selectedJobOpening}>
+                        <p class="nameStyle"><b>Job Name :</b> {selectedJobOpening.Name}</p>
+                        <p class="LocationStyle"><b>Location :</b> {selectedJobOpening.CEMS_Job_Location__c}</p>
+                        <p class="techtyle"><b>Technology :</b> {selectedJobOpening.CEMS_Technology__c}</p>
+                        <p class="expStyle"><b>Experience :</b> {selectedJobOpening.CEMS_Experience__c}</p>
+                        <p class="dueStyle"><b>Last Date   :</b> {selectedJobOpening.CEMS_Due_Date__c}</p>
+                        <p class="RoleStyle"><b>Roles and Responsibilities : </b>{selectedJobOpening.CEMS_Roles_and_Responsibilities__c}</p>
+                    </template>
+                    <!-- <br></br> -->
+                    <!-- <div class="container">
+                        <lightning-button class="myButton" label="Apply Now" variant="brand" onclick={openPopup} style="margin:10px;">
+                        </lightning-button>
+                    </div> -->
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Close" onclick={closeJobOpeningPopup}></lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

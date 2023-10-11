@@ -1,0 +1,18 @@
+<template>
+  <lightning-card>
+    <h1 class="slds-text-heading_small slds-text-align_center">Leave Object</h1>
+    <div class="cardMargin">
+    <lightning-record-edit-form object-api-name="EMS_Leave__c" onsubmit={handleSubmit}>
+      <lightning-messages></lightning-messages>
+      
+          <lightning-input-field field-name="EMS_Employee__c" disabled=true read-only=true value={recordId} required></lightning-input-field>
+          <lightning-input-field field-name="EMS_Start_Date__c"></lightning-input-field>
+          <lightning-input-field field-name="EMS_End_Date__c"></lightning-input-field>
+          <lightning-input-field field-name="Type_of_Leave__c"></lightning-input-field>
+          <lightning-button class="slds-align_absolute-center"  type="submit" name="save" label="Save">
+          </lightning-button>
+        
+    </lightning-record-edit-form>
+    </div>
+  </lightning-card>
+  </template>

@@ -1,0 +1,93 @@
+<template>
+	<lightning-card>
+
+		<lightning-layout style="margin-left:-10px;">
+			<lightning-layout-item class="llitem">
+				<lightning-vertical-navigation selected-item={selectedItem} onselect={changeHandleAction}
+					class="navigation">
+					<lightning-vertical-navigation-section class="sidebarnav">
+						<lightning-vertical-navigation-item label="Home" name="Home">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Personal Details" name="PersonalDetails">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="My projects" name="MyProjects">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="My Performance" name="MyPerformance">
+						</lightning-vertical-navigation-item>
+						<lightning-vertical-navigation-item label="Leaves" name="Leaves">
+						</lightning-vertical-navigation-item>
+                        <lightning-vertical-navigation-item label="Job Openings" name="jobopenings">
+						</lightning-vertical-navigation-item>
+                        <lightning-vertical-navigation-item label="Awards" name="Awards">
+						</lightning-vertical-navigation-item>
+                        <lightning-vertical-navigation-item label="Interview Schedule" name="InterviewSchedule">
+						</lightning-vertical-navigation-item>
+                        <lightning-vertical-navigation-item label="Resignation" name="Resignation">
+						</lightning-vertical-navigation-item>
+						<!-- <lightning-vertical-navigation-item label="Salesforce LWC" name="salesforceLwc"></lightning-vertical-navigation-item> -->
+					</lightning-vertical-navigation-section>
+				</lightning-vertical-navigation>
+			</lightning-layout-item>
+			<div class="slds-p-around_medium">
+				<lightning-layout-item>
+					<h2 class="slds-section-title--divider" style="background:#eee; margin-bottom:10px;">
+						<strong>You Are Viewing: <span style="color:#0000ff;">{currentContent}</span></strong></h2>
+					<template if:true={homeValue}>
+						<div class="tabContent1">
+							<c-flow-carousel></c-flow-carousel>
+						</div>
+					</template>
+
+					<template if:true={personalDetailsValue}>
+						<div class="tabContent1">
+							
+						</div>
+					</template>
+
+					<template if:true={myProjectsValue}>
+						<div class="tabContent1">
+							<!-- <c-cems-test></c-cems-test> -->
+						</div>
+					</template>
+
+					<template if:true={myPerformanceValue}>
+						<div class="tabContent1">
+							<!-- <c-cems-scheduler></c-cems-scheduler> -->
+						</div>
+					</template>
+
+					<template if:true={leavesValue}>
+						<div class="tabContent1">
+							<c-cems-leave></c-cems-leave>
+						</div>
+					</template>
+
+					<template if:true={jobOpeningsValue}>
+						<div class="tabContent1">
+							<c-external-jobs></c-external-jobs>
+						</div>
+					</template>
+					<template if:true={awardValue}>
+						<div class="tabContent1">
+							<c-employee-awards></c-employee-awards>
+						</div>
+					</template>
+					<template if:true={interviewSheduleValue}>
+						<div class="tabContent1">
+							<c-cems-scheduler></c-cems-scheduler>
+						</div>
+					</template>
+					<template if:true={resignationValue}>
+						<div class="tabContent1">
+
+						</div>
+					</template>
+
+				</lightning-layout-item>
+			</div>
+		</lightning-layout>
+		<!--End RelatedTopics Section-->		
+		<!-- </div> -->
+	</lightning-card>
+    
+</template>

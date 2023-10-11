@@ -1,0 +1,17 @@
+<template>
+    <template if:false={showForm}>
+        <lightning-button label="Schedule Interview" onclick={handleScheduleInterview} variant="brand" style="float:right;margin-top:4px;"></lightning-button>
+    </template>
+    <br/>
+    <template if:true={showForm}>
+        <lightning-card title="Schedule an interview">
+            <lightning-button label="Close Schedule" onclick={handleCloseSchedule} variant="brand"></lightning-button>
+            <lightning-record-form
+                object-api-name={objectApiName}
+                fields={fieldList}
+                onsuccess={successHandler}
+                oncancel={handleCloseSchedule}
+            ></lightning-record-form>
+        </lightning-card>
+    </template>
+</template>
